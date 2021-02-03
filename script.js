@@ -63,3 +63,26 @@ const href = e.target.getAttribute('href');
 console.log(href);
 document.querySelector(href).scrollIntoView({behavior:'smooth'});
 });
+
+
+/* Building a tabbed component */
+const tabContainer = document.querySelector('.operations__tab-container');
+const tabs = document.querySelectorAll('.operations__tab');
+const containerContent = document.querySelectorAll('.operations__content');
+console.log(containerContent);
+
+tabContainer.addEventListener('click',(e)=>{
+    const clicked = e.target.closest('.operations__tab');
+    /* Gaurd Clause  */
+    if(!clicked) return;
+
+    tabs.forEach(tab =>tab.classList.remove('operations__tab--active'));
+    containerContent.forEach(container => container.classList.remove('operations__content--active'));
+  
+    //Activate tab
+    clicked.classList.add('operations__tab--active');
+
+    // Activate content section
+    document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+  })
+

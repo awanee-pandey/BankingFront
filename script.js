@@ -86,3 +86,13 @@ tabContainer.addEventListener('click',(e)=>{
     document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
   })
 
+  //Implementing a Sticky Navigation: The Scroll Event
+  const navBar = document.querySelector('.nav');
+
+  const heightHeader = document.querySelector('scroll',()=>{
+    if(window.pageYOffset > heightHeader){
+      navBar.classList.add('sticky');
+    } else{
+      navBar.classList.remove('sticky');
+    }
+  }); 

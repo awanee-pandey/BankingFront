@@ -98,3 +98,25 @@ tabContainer.addEventListener('click',(e)=>{
     }
   }); 
 
+/* ------- Revealing Section ------- */
+const allSections = document.querySelectorAll('.section');
+
+const showSection = (entries,observer) => {
+  const [entry] = entries;
+
+  //Guard clause
+  if(!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(showSection,{
+  root:null,
+  threshold:0.15,
+});
+
+allSections.forEach(section =>{
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});

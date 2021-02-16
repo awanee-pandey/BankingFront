@@ -66,22 +66,6 @@ container.addEventListener('click',e=>{
 });
 
 
-
-/* Smooth scrolling for navbar */
-const logo = document.querySelector('.nav__logo');
-const container = document.querySelector('.nav__links');
-
-container.addEventListener('click', e => {
-  e.preventDefault();
-/* Guard clause */
-if(!e.target.classList.contains('nav__link')) return;
-
-const href = e.target.getAttribute('href');
-console.log(href);
-document.querySelector(href).scrollIntoView({behavior:'smooth'});
-});
-
-
 /* Building a tabbed component */
 const tabContainer = document.querySelector('.operations__tab-container');
 const tabs = document.querySelectorAll('.operations__tab');

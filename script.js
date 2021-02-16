@@ -29,8 +29,9 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-/* Smooth Scrolling */
-const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+/* Old Smooth Scrolling */
+/*const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click',e=>{
@@ -38,17 +39,33 @@ btnScrollTo.addEventListener('click',e=>{
   console.log(e.target.getBoundingClientRect());
   console.log('current scroll (x/y)',window.pageXOffset,window.pageYOffset);
  
- /* Old way */
-  window.scrollTo({
+ /* Older way */
+ /*  window.scrollTo({
     left: s1coords.left + window.pageXOffset,
     top: s1coords.top + window.pageYOffset,
     behavior:'smooth',
-  })
+  }) */
 
   /* New way */
-  section1.scrollIntoView({behavior: 'smooth'});
+ /* section1.scrollIntoView({behavior: 'smooth'});
 
-})
+}) */
+
+
+/* Event delegation way of implementing page navigation */
+const container = document.querySelector('.nav__links');
+
+container.addEventListener('click',e=>{
+  e.preventDefault();
+
+  /* Gaurd Clause */
+  if(!e.target.classList.contains('nav__link')) return;
+
+  const href = e.target.getAttribute('href');
+  document.querySelector(href).scrollIntoView({ behavior:'smooth'} );
+});
+
+
 
 /* Smooth scrolling for navbar */
 const logo = document.querySelector('.nav__logo');

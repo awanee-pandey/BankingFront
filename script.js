@@ -107,7 +107,7 @@ const showSection = (entries,observer) => {
 
   //Guard clause
   if(!entry.isIntersecting) return;
-
+  console.log(entry);
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target);
 };
@@ -121,3 +121,5 @@ allSections.forEach(section =>{
   section.classList.add('section--hidden');
   sectionObserver.observe(section);
 });
+
+/* ------- Lazy Loading------- */

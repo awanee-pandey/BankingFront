@@ -107,14 +107,13 @@ const showSection = (entries,observer) => {
 
   //Guard clause
   if(!entry.isIntersecting) return;
-  console.log(entry);
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target);
 };
 
 const sectionObserver = new IntersectionObserver(showSection,{
   root:null,
-  threshold:0.15,
+  threshold:0.15
 });
 
 allSections.forEach(section =>{
@@ -123,3 +122,26 @@ allSections.forEach(section =>{
 });
 
 /* ------- Lazy Loading------- */
+const lazyImages =document.querySelectorAll('img[data-src]');
+
+const loadImg = (entries,observer) =>{
+  const[entry] =entries;
+
+  /* Gaurd Clause */
+  if(!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.getAttribute('data-src');
+
+  entry.target.addEventListener('load', () =>{
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg,{
+  root:null,
+  threshold:0,
+  rootMargin:'-300px'
+});
+
+lazyImages.forEach(img =>imgObserver.observe(img));

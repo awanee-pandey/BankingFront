@@ -145,3 +145,24 @@ const imgObserver = new IntersectionObserver(loadImg,{
 });
 
 lazyImages.forEach(img =>imgObserver.observe(img));
+
+
+/* Building a slider component */
+const slides = document.querySelectorAll('.slide');
+
+
+/*--------------------------Sliders------------------ */
+const slides = document.querySelectorAll('.slide');
+const slider = document.querySelector('.slider');
+
+slider.style.transform = 'scale(0.5)';
+slider.style.overflow = 'visible';
+
+slides.forEach((s,i) => (
+  s.style.transform=`translateX(${100*i}%)`));
+  //0%,100%,200%,300%
+
+  /* Next Slide */
+  btnRight.addEventListener('click',function(){
+    
+  })

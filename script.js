@@ -148,21 +148,36 @@ lazyImages.forEach(img =>imgObserver.observe(img));
 
 
 /* Building a slider component */
+let curSlide = 0;
+const goToSlide = function(slide){
+  slides.forEach((s,i) => (
+    s.style.transform=`translateX(${100*(i-slide)}%)`
+  ));
+  }
+
 const slides = document.querySelectorAll('.slide');
+let maxSlide = slides.length;
+const prevSlide = function(){
+  if(curSlide===0){
+    curSlide = 0;
+  }else{
+    curSlide--;
+  }
+}
+goToSlide(0);
 
+const nextSlide = function(){
+  if(curSlide===maxSlide - 1){
+    curSlide = 0;
+  }else{
+    curSlide++;
+  }
+}
+goToSlide(curSlide);
 
-/*--------------------------Sliders------------------ */
-const slides = document.querySelectorAll('.slide');
-const slider = document.querySelector('.slider');
-
-slider.style.transform = 'scale(0.5)';
-slider.style.overflow = 'visible';
-
-slides.forEach((s,i) => (
-  s.style.transform=`translateX(${100*i}%)`));
   //0%,100%,200%,300%
 
   /* Next Slide */
-  btnRight.addEventListener('click',function(){
-    
-  })
+  // btnRight.addEventListener('click',function(){
+
+  // })
